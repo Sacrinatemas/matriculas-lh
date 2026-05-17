@@ -426,14 +426,33 @@ hr.div{border:none;border-top:0.5px solid #d3d1c7;margin:1.5rem 0;}
   </div>
 </div>
 
-<!-- ===== PASO 9: PROGRAMAS SOCIALES ===== -->
+<!-- ===== PASO 9: RELIGIÓN ===== -->
+<div id="sec-religion" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Asignatura de religión</h1>
+  <p class="subtitle" id="religion-subtitle">Seleccione la asignatura de religión que cursará el estudiante.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:81%"></div></div>
+    <div class="step-label"><span>Paso 9 — Religión</span><span>9 de 11</span></div>
+    <div class="field">
+      <label class="label">Asignatura seleccionada</label>
+      <div class="radio-group" id="opts-religion"></div>
+      <span class="error-msg" id="err-religion">Seleccione una opción para continuar.</span>
+    </div>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-religion','sec-pie')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continReligion()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 10: PROGRAMAS SOCIALES ===== -->
 <div id="sec-social" class="hidden">
   <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
   <h1 class="title">Programas sociales</h1>
   <p class="subtitle">Complete la información sobre programas sociales y situación socioeconómica del estudiante.</p>
   <div class="card">
-    <div class="progress-bar"><div class="progress-fill" style="width:81%"></div></div>
-    <div class="step-label"><span>Paso 9 — Programas sociales</span><span>9 de 11</span></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+    <div class="step-label"><span>Paso 10 — Programas sociales</span><span>10 de 11</span></div>
 
     <p class="sec-head">Programa social</p>
     <div class="field">
@@ -520,12 +539,178 @@ hr.div{border:none;border-top:0.5px solid #d3d1c7;margin:1.5rem 0;}
     </div>
 
     <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-social','sec-religion')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continSocial()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 11: APODERADO TITULAR ===== -->
+<div id="sec-apod-titular" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Apoderado titular</h1>
+  <p class="subtitle">Ingrese los datos del apoderado o apoderada titular del estudiante.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:91%"></div></div>
+    <div class="step-label"><span>Paso 11 — Apoderado titular</span><span>11 de 12</span></div>
+
+    <p class="sec-head">Datos personales</p>
+    <div class="field">
+      <label class="label" for="at-nombre">Nombre completo</label>
+      <div class="input-wrap"><i class="ti ti-user pfx" aria-hidden="true"></i><input type="text" id="at-nombre" placeholder="Ej: Carlos Hernández Soto" /></div>
+      <span class="error-msg" id="err-at-nombre">Ingrese el nombre completo.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="at-rut">RUT</label>
+      <div class="input-wrap"><i class="ti ti-id-badge pfx" aria-hidden="true"></i><input type="text" id="at-rut" placeholder="12.345.678-9" maxlength="12" oninput="fmtRut(this)" /></div>
+      <span class="error-msg" id="err-at-rut">Ingrese un RUT válido.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="at-escolaridad">Nivel de escolaridad</label>
+      <div class="input-wrap"><i class="ti ti-school pfx" aria-hidden="true"></i>
+        <select id="at-escolaridad" style="padding-left:36px;">
+          <option value="">Seleccione…</option>
+          <option>Sin estudios</option>
+          <option>Básica incompleta</option>
+          <option>Básica completa</option>
+          <option>Media incompleta</option>
+          <option>Media completa</option>
+          <option>Técnico nivel medio incompleto</option>
+          <option>Técnico nivel medio completo</option>
+          <option>Técnico nivel superior incompleto</option>
+          <option>Técnico nivel superior completo</option>
+          <option>Universitaria incompleta</option>
+          <option>Universitaria completa</option>
+          <option>Postgrado</option>
+        </select>
+      </div>
+      <span class="error-msg" id="err-at-escolaridad">Seleccione el nivel de escolaridad.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="at-tel">Número telefónico</label>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;align-items:center;background:#f1efe8;border:0.5px solid #d3d1c7;border-radius:8px;padding:9px 12px;font-size:14px;color:#2c2c2a;white-space:nowrap;flex-shrink:0;">+569</div>
+        <input type="text" id="at-tel" placeholder="87654321" maxlength="8" style="padding-left:12px;" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+      </div>
+      <span class="error-msg" id="err-at-tel">Ingrese los 8 dígitos del número (sin el 9 inicial).</span>
+    </div>
+    <div class="field">
+      <label class="label" for="at-email">Correo electrónico</label>
+      <div class="input-wrap"><i class="ti ti-mail pfx" aria-hidden="true"></i><input type="email" id="at-email" placeholder="ejemplo@correo.com" /></div>
+      <span class="error-msg" id="err-at-email">Ingrese un correo electrónico válido.</span>
+    </div>
+
+    <hr class="div" />
+    <p class="sec-head">Dirección</p>
+
+    <label style="display:flex;align-items:center;gap:9px;padding:10px 13px;border:0.5px solid #d3d1c7;border-radius:8px;cursor:pointer;margin-bottom:1.1rem;font-size:14px;color:#2c2c2a;transition:background .12s;" id="at-misma-row" onclick="toggleMismaDirAt()">
+      <input type="checkbox" id="at-misma-dir" style="accent-color:#534ab7;width:15px;height:15px;cursor:pointer;" />
+      <i class="ti ti-copy" style="font-size:16px;color:#888780;" aria-hidden="true"></i>
+      Misma dirección del estudiante
+    </label>
+
+    <div id="at-dir-fields">
+      <div class="grid3" style="margin-bottom:1.35rem;">
+        <div><label class="label" for="at-calle">Calle</label><input type="text" id="at-calle" class="no-icon" placeholder="Ej: Los Aromos" /><span class="error-msg" id="err-at-calle">Requerido.</span></div>
+        <div><label class="label" for="at-nro">Número</label><input type="text" id="at-nro" class="no-icon" placeholder="1234" /><span class="error-msg" id="err-at-nro">Requerido.</span></div>
+        <div><label class="label" for="at-depto">Depto/Casa</label><input type="text" id="at-depto" class="no-icon" placeholder="Opcional" /></div>
+      </div>
+      <div class="grid2" style="margin-bottom:1.35rem;">
+        <div><label class="label" for="at-sector">Sector / Villa</label><input type="text" id="at-sector" class="no-icon" placeholder="Ej: Villa Las Rosas" /></div>
+        <div><label class="label" for="at-ciudad">Ciudad</label><input type="text" id="at-ciudad" class="no-icon" placeholder="Ej: Temuco" /><span class="error-msg" id="err-at-ciudad">Requerido.</span></div>
+      </div>
+      <div class="field"><label class="label" for="at-comuna">Comuna</label><input type="text" id="at-comuna" class="no-icon" placeholder="Ej: Temuco" /><span class="error-msg" id="err-at-comuna">Requerido.</span></div>
+    </div>
+
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-apod-titular','sec-social')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continApodTitular()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 12: APODERADO SUPLENTE ===== -->
+<div id="sec-apod-suplente" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Apoderado suplente</h1>
+  <p class="subtitle">Ingrese los datos del apoderado o apoderada suplente del estudiante.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+    <div class="step-label"><span>Paso 12 — Apoderado suplente</span><span>12 de 12</span></div>
+
+    <p class="sec-head">Datos personales</p>
+    <div class="field">
+      <label class="label" for="as-nombre">Nombre completo</label>
+      <div class="input-wrap"><i class="ti ti-user pfx" aria-hidden="true"></i><input type="text" id="as-nombre" placeholder="Ej: Ana Martínez López" /></div>
+      <span class="error-msg" id="err-as-nombre">Ingrese el nombre completo.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="as-rut">RUT</label>
+      <div class="input-wrap"><i class="ti ti-id-badge pfx" aria-hidden="true"></i><input type="text" id="as-rut" placeholder="12.345.678-9" maxlength="12" oninput="fmtRut(this)" /></div>
+      <span class="error-msg" id="err-as-rut">Ingrese un RUT válido.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="as-escolaridad">Nivel de escolaridad</label>
+      <div class="input-wrap"><i class="ti ti-school pfx" aria-hidden="true"></i>
+        <select id="as-escolaridad" style="padding-left:36px;">
+          <option value="">Seleccione…</option>
+          <option>Sin estudios</option>
+          <option>Básica incompleta</option>
+          <option>Básica completa</option>
+          <option>Media incompleta</option>
+          <option>Media completa</option>
+          <option>Técnico nivel medio incompleto</option>
+          <option>Técnico nivel medio completo</option>
+          <option>Técnico nivel superior incompleto</option>
+          <option>Técnico nivel superior completo</option>
+          <option>Universitaria incompleta</option>
+          <option>Universitaria completa</option>
+          <option>Postgrado</option>
+        </select>
+      </div>
+      <span class="error-msg" id="err-as-escolaridad">Seleccione el nivel de escolaridad.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="as-tel">Número telefónico</label>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;align-items:center;background:#f1efe8;border:0.5px solid #d3d1c7;border-radius:8px;padding:9px 12px;font-size:14px;color:#2c2c2a;white-space:nowrap;flex-shrink:0;">+569</div>
+        <input type="text" id="as-tel" placeholder="87654321" maxlength="8" style="padding-left:12px;" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+      </div>
+      <span class="error-msg" id="err-as-tel">Ingrese los 8 dígitos del número (sin el 9 inicial).</span>
+    </div>
+    <div class="field">
+      <label class="label" for="as-email">Correo electrónico</label>
+      <div class="input-wrap"><i class="ti ti-mail pfx" aria-hidden="true"></i><input type="email" id="as-email" placeholder="ejemplo@correo.com" /></div>
+      <span class="error-msg" id="err-as-email">Ingrese un correo electrónico válido.</span>
+    </div>
+
+    <hr class="div" />
+    <p class="sec-head">Dirección</p>
+
+    <label style="display:flex;align-items:center;gap:9px;padding:10px 13px;border:0.5px solid #d3d1c7;border-radius:8px;cursor:pointer;margin-bottom:1.1rem;font-size:14px;color:#2c2c2a;transition:background .12s;" id="as-misma-row" onclick="toggleMismaDirAs()">
+      <input type="checkbox" id="as-misma-dir" style="accent-color:#534ab7;width:15px;height:15px;cursor:pointer;" />
+      <i class="ti ti-copy" style="font-size:16px;color:#888780;" aria-hidden="true"></i>
+      Misma dirección del estudiante
+    </label>
+
+    <div id="as-dir-fields">
+      <div class="grid3" style="margin-bottom:1.35rem;">
+        <div><label class="label" for="as-calle">Calle</label><input type="text" id="as-calle" class="no-icon" placeholder="Ej: Los Aromos" /><span class="error-msg" id="err-as-calle">Requerido.</span></div>
+        <div><label class="label" for="as-nro">Número</label><input type="text" id="as-nro" class="no-icon" placeholder="1234" /><span class="error-msg" id="err-as-nro">Requerido.</span></div>
+        <div><label class="label" for="as-depto">Depto/Casa</label><input type="text" id="as-depto" class="no-icon" placeholder="Opcional" /></div>
+      </div>
+      <div class="grid2" style="margin-bottom:1.35rem;">
+        <div><label class="label" for="as-sector">Sector / Villa</label><input type="text" id="as-sector" class="no-icon" placeholder="Ej: Villa Las Rosas" /></div>
+        <div><label class="label" for="as-ciudad">Ciudad</label><input type="text" id="as-ciudad" class="no-icon" placeholder="Ej: Temuco" /><span class="error-msg" id="err-as-ciudad">Requerido.</span></div>
+      </div>
+      <div class="field"><label class="label" for="as-comuna">Comuna</label><input type="text" id="as-comuna" class="no-icon" placeholder="Ej: Temuco" /><span class="error-msg" id="err-as-comuna">Requerido.</span></div>
+    </div>
+
+    <hr class="div" />
     <div id="err-envio" style="display:none;align-items:flex-start;gap:9px;background:#fcebeb;border:0.5px solid #f7c1c1;border-radius:8px;padding:11px 13px;font-size:13px;color:#791f1f;margin-bottom:1rem;">
       <i class="ti ti-alert-circle" style="font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
-      <span>Hubo un error al enviar el formulario. Verifique su conexión e intente nuevamente. Si el problema persiste, contacte al establecimiento.</span>
+      <span>Hubo un error al enviar el formulario. Verifique su conexión e intente nuevamente.</span>
     </div>
-    <button class="btn btn-back btn" onclick="show2('sec-social','sec-pie')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
-    <button class="btn btn-primary" id="btn-enviar" onclick="continSocial()">Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i></button>
+    <button class="btn btn-back btn" onclick="show2('sec-apod-suplente','sec-apod-titular')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" id="btn-enviar" onclick="continApodSuplente()">Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i></button>
   </div>
 </div>
 
@@ -544,23 +729,12 @@ hr.div{border:none;border-top:0.5px solid #d3d1c7;margin:1.5rem 0;}
       <div style="background:#f1efe8;border-radius:8px;padding:14px 16px;text-align:left;margin-bottom:1.5rem;">
         <p style="font-size:12px;font-weight:500;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">Próximos pasos</p>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;">
-            <i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
-            El establecimiento revisará la información enviada.
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;">
-            <i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
-            Se le contactará para confirmar fecha de firma de matrícula.
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;">
-            <i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
-            Recuerde traer los documentos requeridos el día de la matrícula.
-          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;"><i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>El establecimiento revisará la información enviada.</div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;"><i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>Se le contactará para confirmar fecha de firma de matrícula.</div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;"><i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>Recuerde traer los documentos requeridos el día de la matrícula.</div>
         </div>
       </div>
-      <button class="btn" onclick="show2('sec-exito','sec-social')">
-        <i class="ti ti-edit" aria-hidden="true"></i> Corregir información
-      </button>
+      <button class="btn" onclick="show2('sec-exito','sec-apod-suplente')"><i class="ti ti-edit" aria-hidden="true"></i> Corregir información</button>
     </div>
   </div>
 </div>
@@ -571,7 +745,7 @@ hr.div{border:none;border-top:0.5px solid #d3d1c7;margin:1.5rem 0;}
 let tipoVal=null,puebloVal=null,descVal=null,cursoMatVal='';
 let arteVal=null,electivos={s1:null,s2:null,s3:null};
 let enfVal=null,medVal=null,pieVal=null,docPieVal=null;
-let tribVal=null,oaVal=null,oaDocVal=null;
+let tribVal=null,oaVal=null,oaDocVal=null,religionVal=null;
 
 const S1=[{val:'A-Eco',label:'Economía y Sociedad',cat:'A'},{val:'B-Comp',label:'Pensamiento Computacional y Programación',cat:'B'},{val:'B-Quim',label:'Química',cat:'B'},{val:'B-Prob',label:'Probabilidades y Estadística Descriptiva Inferencial',cat:'B'},{val:'C-Mus',label:'Interpretación Musical',cat:'C'}];
 const S2=[{val:'A-Geo',label:'Geografía, Territorio y Desafíos Socioambientales',cat:'A'},{val:'A-Lec',label:'Lectura y Escritura Especializada',cat:'A'},{val:'B-Bio',label:'Biología Celular y Molecular',cat:'B'},{val:'B-Mat',label:'Límites, Derivadas e Integrales',cat:'B'},{val:'C-Dis',label:'Diseño y Arquitectura',cat:'C'}];
@@ -660,7 +834,49 @@ function continEnf(){
 
 function setPIE(v){pieVal=v;document.getElementById('opt-pieno').classList.toggle('selected',v==='no');document.getElementById('opt-piesi').classList.toggle('selected',v==='si');document.getElementById('opt-pieno').querySelector('input').checked=v==='no';document.getElementById('opt-piesi').querySelector('input').checked=v==='si';showEl('bloque-pie',v==='si');setErr('err-pie',false);}
 function setDocPIE(v){docPieVal=v;document.getElementById('opt-docsi').classList.toggle('selected',v==='si');document.getElementById('opt-docno').classList.toggle('selected',v==='no');document.getElementById('opt-docsi').querySelector('input').checked=v==='si';document.getElementById('opt-docno').querySelector('input').checked=v==='no';setErr('err-docpie',false);}
-function continPIE(){let ok=true;if(!pieVal){setErr('err-pie',true);ok=false;}if(pieVal==='si'&&!docPieVal){setErr('err-docpie',true);ok=false;}if(ok)show2('sec-pie','sec-social');}
+function continPIE(){
+  let ok=true;
+  if(!pieVal){setErr('err-pie',true);ok=false;}
+  if(pieVal==='si'&&!docPieVal){setErr('err-docpie',true);ok=false;}
+  if(!ok)return;
+  renderReligion();
+  show2('sec-pie','sec-religion');
+}
+
+function renderReligion(){
+  religionVal=null;
+  const es3o4m=['3m','4m'].includes(cursoMatVal);
+  const opciones=es3o4m
+    ?['Religión Católica','Religión Evangélica','Artes Visuales','Artes Musicales']
+    :['Religión Católica','Religión Evangélica','Raíces de la Actualidad'];
+  const iconos={'Religión Católica':'ti-building-church','Religión Evangélica':'ti-building-church','Raíces de la Actualidad':'ti-books','Artes Visuales':'ti-palette','Artes Musicales':'ti-music'};
+  const contenedor=document.getElementById('opts-religion');
+  contenedor.innerHTML='';
+  opciones.forEach((op,i)=>{
+    const id='opt-rel-'+i;
+    const div=document.createElement('label');
+    div.className='radio-opt';
+    div.id=id;
+    div.setAttribute('onclick',`setReligion('${op}','${id}')`);
+    div.innerHTML=`<input type="radio" name="religion" /><div style="display:flex;align-items:center;gap:8px;"><i class="ti ${iconos[op]||'ti-book'}" style="font-size:18px;color:#888780" aria-hidden="true"></i><div class="ro-label">${op}</div></div>`;
+    contenedor.appendChild(div);
+  });
+}
+
+function setReligion(v,optId){
+  religionVal=v;
+  document.querySelectorAll('#opts-religion .radio-opt').forEach(el=>{
+    el.classList.toggle('selected',el.id===optId);
+    el.querySelector('input').checked=el.id===optId;
+    el.querySelector('i').style.color=el.id===optId?'#534ab7':'#888780';
+  });
+  setErr('err-religion',false);
+}
+
+function continReligion(){
+  if(!religionVal){setErr('err-religion',true);return;}
+  show2('sec-religion','sec-social');
+}
 
 function checkProgSocial(){showEl('field-social-otro',document.getElementById('prog-social').value==='otro-social');setErr('err-prog-social',false);}
 function setTrib(v){tribVal=v;document.getElementById('opt-tribno').classList.toggle('selected',v==='no');document.getElementById('opt-tribsi').classList.toggle('selected',v==='si');document.getElementById('opt-tribno').querySelector('input').checked=v==='no';document.getElementById('opt-tribsi').querySelector('input').checked=v==='si';showEl('bloque-trib',v==='si');setErr('err-trib',false);}
@@ -676,7 +892,85 @@ function continSocial(){
   if(tribVal==='si'&&!reqTxt('cual-trib','err-cual-trib'))ok=false;
   if(!oaVal){setErr('err-oa',true);ok=false;}
   if(oaVal==='si'){if(!reqTxt('persona-oa','err-persona-oa'))ok=false;if(!oaDocVal){setErr('err-oadoc',true);ok=false;}}
-  if(ok)enviarFormulario();
+  if(ok)show2('sec-social','sec-apod-titular');
+}
+
+function toggleMismaDirAt(){
+  const checked=document.getElementById('at-misma-dir').checked;
+  const fields=document.getElementById('at-dir-fields');
+  const row=document.getElementById('at-misma-row');
+  fields.style.opacity=checked?'0.4':'1';
+  fields.style.pointerEvents=checked?'none':'auto';
+  row.style.background=checked?'#eeedfe':'';
+  row.style.borderColor=checked?'#534ab7':'';
+  ['at-calle','at-nro','at-ciudad','at-comuna'].forEach(id=>{
+    document.getElementById(id).classList.remove('invalid');
+    setErr('err-'+id,false);
+  });
+}
+
+function toggleMismaDirAs(){
+  const checked=document.getElementById('as-misma-dir').checked;
+  const fields=document.getElementById('as-dir-fields');
+  const row=document.getElementById('as-misma-row');
+  fields.style.opacity=checked?'0.4':'1';
+  fields.style.pointerEvents=checked?'none':'auto';
+  row.style.background=checked?'#eeedfe':'';
+  row.style.borderColor=checked?'#534ab7':'';
+  ['as-calle','as-nro','as-ciudad','as-comuna'].forEach(id=>{
+    document.getElementById(id).classList.remove('invalid');
+    setErr('err-'+id,false);
+  });
+}
+
+function getDirApod(prefijo){
+  const mismaDirId=prefijo+'-misma-dir';
+  if(document.getElementById(mismaDirId).checked){
+    return {
+      calle: document.getElementById('calle').value,
+      nro: document.getElementById('nro').value,
+      depto: document.getElementById('depto').value,
+      sector: document.getElementById('sector').value,
+      ciudad: document.getElementById('ciudad').value,
+      comuna: document.getElementById('comuna').value
+    };
+  }
+  const v=id=>document.getElementById(id).value;
+  return {
+    calle: v(prefijo+'-calle'),
+    nro: v(prefijo+'-nro'),
+    depto: v(prefijo+'-depto'),
+    sector: v(prefijo+'-sector'),
+    ciudad: v(prefijo+'-ciudad'),
+    comuna: v(prefijo+'-comuna')
+  };
+}
+
+function validarApod(p){
+  let ok=true;
+  const n=document.getElementById(p+'-nombre').value.trim();
+  if(n.length<3){setErr('err-'+p+'-nombre',true);setInv(p+'-nombre',true);ok=false;}else{setErr('err-'+p+'-nombre',false);setInv(p+'-nombre',false);}
+  if(!valRut(document.getElementById(p+'-rut').value)){setErr('err-'+p+'-rut',true);setInv(p+'-rut',true);ok=false;}else{setErr('err-'+p+'-rut',false);setInv(p+'-rut',false);}
+  if(!reqSel(p+'-escolaridad','err-'+p+'-escolaridad'))ok=false;
+  const tel=document.getElementById(p+'-tel').value;
+  if(tel.length!==8){setErr('err-'+p+'-tel',true);setInv(p+'-tel',true);ok=false;}else{setErr('err-'+p+'-tel',false);setInv(p+'-tel',false);}
+  if(!valEmail(document.getElementById(p+'-email').value)){setErr('err-'+p+'-email',true);setInv(p+'-email',true);ok=false;}else{setErr('err-'+p+'-email',false);setInv(p+'-email',false);}
+  const misma=document.getElementById(p+'-misma-dir').checked;
+  if(!misma){
+    if(!reqTxt(p+'-calle','err-'+p+'-calle'))ok=false;
+    if(!reqTxt(p+'-nro','err-'+p+'-nro'))ok=false;
+    if(!reqTxt(p+'-ciudad','err-'+p+'-ciudad'))ok=false;
+    if(!reqTxt(p+'-comuna','err-'+p+'-comuna'))ok=false;
+  }
+  return ok;
+}
+
+function continApodTitular(){
+  if(validarApod('at'))show2('sec-apod-titular','sec-apod-suplente');
+}
+
+function continApodSuplente(){
+  if(validarApod('as'))enviarFormulario();
 }
 
 function recopilarDatos(){
@@ -698,6 +992,8 @@ function recopilarDatos(){
   }
 
   const cursoLabels={'8b':'8° Básico','1m':'1° Medio','2m':'2° Medio','3m':'3° Medio','4m':'4° Medio'};
+  const dirAt=getDirApod('at');
+  const dirAs=getDirApod('as');
 
   return {
     nombre: v('nombre'),
@@ -725,50 +1021,54 @@ function recopilarDatos(){
     medicamento: enfVal==='si'?(medVal==='si'?v('cual-med'):'No'):'',
     pie: pieVal==='si'?'Sí':'No',
     docPie: pieVal==='si'?(docPieVal==='si'?'Sí, porta documentación':'No, se compromete a marzo'):'',
+    religion: religionVal||'',
     programaSocial: progSocialVal,
     rsh: v('rsh')||'No informado',
     tribunales: tribVal==='si'?v('cual-trib'):'No',
     ordenAlejamiento: oaVal==='si'?'Sí':'No',
     personaOA: oaVal==='si'?v('persona-oa'):'',
-    docOA: oaVal==='si'?(oaDocVal==='si'?'Sí porta documentación':'No porta documentación'):''
+    docOA: oaVal==='si'?(oaDocVal==='si'?'Sí porta documentación':'No porta documentación'):'',
+    atNombre: v('at-nombre'),
+    atRut: v('at-rut'),
+    atEscolaridad: v('at-escolaridad'),
+    atTelefono: '+569'+v('at-tel'),
+    atEmail: v('at-email'),
+    atDireccion: `${dirAt.calle} ${dirAt.nro}${dirAt.depto?' '+dirAt.depto:''}, ${dirAt.sector?dirAt.sector+', ':''}${dirAt.ciudad}, ${dirAt.comuna}`,
+    asNombre: v('as-nombre'),
+    asRut: v('as-rut'),
+    asEscolaridad: v('as-escolaridad'),
+    asTelefono: '+569'+v('as-tel'),
+    asEmail: v('as-email'),
+    asDireccion: `${dirAs.calle} ${dirAs.nro}${dirAs.depto?' '+dirAs.depto:''}, ${dirAs.sector?dirAs.sector+', ':''}${dirAs.ciudad}, ${dirAs.comuna}`
   };
 }
 
-async function enviarFormulario() {
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/library/d/1MLEdsBaVPygINhufTeLzXVlz6L6tfE7UJ2zZA21B1-SqEDO_uIDfFp3o/4';
+async function enviarFormulario(){
+  const APPS_SCRIPT_URL='REEMPLAZA_CON_TU_URL_DE_APPS_SCRIPT';
 
-  const btnEnviar = document.getElementById('btn-enviar');
-  const errEnvio = document.getElementById('err-envio');
-  errEnvio.style.display = 'none';
-  btnEnviar.disabled = true;
-  btnEnviar.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite" aria-hidden="true"></i> Enviando…';
+  const btnEnviar=document.getElementById('btn-enviar');
+  const errEnvio=document.getElementById('err-envio');
+  errEnvio.style.display='none';
+  btnEnviar.disabled=true;
+  btnEnviar.innerHTML='<i class="ti ti-loader" style="animation:spin 1s linear infinite" aria-hidden="true"></i> Enviando…';
 
-  const datos = recopilarDatos();
-
-  // Construir URL con parámetros
-  const params = new URLSearchParams(datos);
-  const url = `${APPS_SCRIPT_URL}?${params.toString()}`;
+  const datos=recopilarDatos();
 
   try {
-    // Usar Image en vez de fetch — evita bloqueos de CORS en Google Sites
-    await new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = resolve;
-      img.onerror = resolve; // resolve en ambos casos — el envío igual llega
-      img.src = url;
-      setTimeout(resolve, 4000); // timeout de seguridad de 4 segundos
+    await fetch(APPS_SCRIPT_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(datos)
     });
-
-    const nombre = datos.nombre.split(' ')[0];
-    document.getElementById('exito-nombre').textContent = nombre;
-    document.getElementById('exito-email').textContent = datos.email;
-    document.getElementById('exito-curso').textContent = datos.cursoMatricula;
-    show2('sec-social', 'sec-exito');
-
-  } catch (err) {
-    btnEnviar.disabled = false;
-    btnEnviar.innerHTML = 'Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i>';
-    errEnvio.style.display = 'flex';
+    document.getElementById('exito-nombre').textContent=datos.nombre.split(' ')[0];
+    document.getElementById('exito-email').textContent=datos.email;
+    document.getElementById('exito-curso').textContent=datos.cursoMatricula;
+    show2('sec-apod-suplente','sec-exito');
+  } catch(err){
+    btnEnviar.disabled=false;
+    btnEnviar.innerHTML='Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i>';
+    errEnvio.style.display='flex';
   }
 }
 </script>
