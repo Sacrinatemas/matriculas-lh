@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matrícula 2027 — Liceo Manuel Montt</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f5f5f3;min-height:100vh;padding:2rem 1rem;}
+.wrap{max-width:560px;margin:0 auto;}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#5f5e5a;border:0.5px solid #d3d1c7;border-radius:20px;padding:4px 12px;margin-bottom:1rem;}
+h1.title{font-family:Georgia,serif;font-size:26px;font-weight:500;color:#2c2c2a;margin-bottom:.4rem;line-height:1.3;}
+p.subtitle{font-size:14px;color:#5f5e5a;line-height:1.6;margin-bottom:1.75rem;}
+.card{background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1.75rem;}
+.progress-bar{height:3px;background:#f1efe8;border-radius:2px;margin-bottom:.75rem;overflow:hidden;}
+.progress-fill{height:100%;background:#534ab7;border-radius:2px;transition:width .4s;}
+.step-label{font-size:12px;color:#888780;display:flex;justify-content:space-between;margin-bottom:1.75rem;}
+.sec-head{font-size:11px;font-weight:500;color:#888780;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:0.5px solid #d3d1c7;}
+.label{display:block;font-size:13px;font-weight:500;color:#5f5e5a;margin-bottom:7px;}
+.hint{font-size:12px;color:#888780;margin-top:5px;}
+.field{margin-bottom:1.35rem;}
+.input-wrap{position:relative;display:flex;align-items:center;}
+.input-wrap i.pfx{position:absolute;left:11px;font-size:16px;color:#b4b2a9;pointer-events:none;z-index:1;}
+input[type=text],input[type=number],input[type=date],input[type=email],select{width:100%;padding:9px 12px 9px 36px;font-size:14px;font-family:inherit;border-radius:8px;background:#f1efe8;border:0.5px solid #d3d1c7;color:#2c2c2a;outline:none;transition:border-color .15s,background .15s;-webkit-appearance:none;}
+input[type=text]:focus,input[type=number]:focus,input[type=date]:focus,input[type=email]:focus,select:focus{border-color:#534ab7;background:#fff;box-shadow:0 0 0 3px rgba(83,74,183,.1);}
+input::placeholder{color:#b4b2a9;}
+input.no-icon,select.no-icon{padding-left:12px;}
+input.invalid,select.invalid{border-color:#e24b4a!important;}
+.error-msg{font-size:12px;color:#a32d2d;margin-top:5px;display:none;}
+.error-msg.show{display:block;}
+hr.div{border:none;border-top:0.5px solid #d3d1c7;margin:1.5rem 0;}
+.btn{width:100%;padding:11px;font-size:14px;font-weight:500;font-family:inherit;border-radius:8px;border:0.5px solid #d3d1c7;background:#fff;color:#2c2c2a;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s,transform .1s;}
+.btn:hover{background:#f1efe8;}
+.btn:active{transform:scale(.98);}
+.btn-primary{background:#2c2c2a;color:#f1efe8;border-color:transparent;}
+.btn-primary:hover{background:#444441;}
+.btn-back{margin-bottom:10px;color:#5f5e5a;}
+.hidden{display:none!important;}
+.radio-group{display:flex;flex-direction:column;gap:9px;}
+.radio-opt{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:0.5px solid #d3d1c7;border-radius:8px;cursor:pointer;transition:background .12s,border-color .12s;}
+.radio-opt:hover{background:#f1efe8;}
+.radio-opt.selected{border-color:#534ab7;background:#eeedfe;}
+.radio-opt input[type=radio]{accent-color:#534ab7;width:15px;height:15px;margin-top:2px;cursor:pointer;flex-shrink:0;}
+.radio-opt .ro-label{font-size:14px;color:#2c2c2a;line-height:1.4;}
+.radio-opt .ro-sub{font-size:12px;color:#5f5e5a;line-height:1.4;margin-top:2px;}
+.radio-opt.selected .ro-label{color:#3c3489;}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.35rem;}
+.type-card{border:0.5px solid #d3d1c7;border-radius:12px;padding:1.2rem 1rem;cursor:pointer;transition:border-color .15s,background .15s;text-align:center;}
+.type-card:hover{background:#f1efe8;}
+.type-card.selected{border:2px solid #534ab7;background:#eeedfe;}
+.type-card i{font-size:26px;color:#888780;display:block;margin-bottom:.6rem;}
+.type-card.selected i{color:#534ab7;}
+.type-card .tc-title{font-size:14px;font-weight:500;color:#2c2c2a;}
+.type-card .tc-sub{font-size:12px;color:#5f5e5a;margin-top:3px;}
+.artes-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;}
+.arte-card{border:0.5px solid #d3d1c7;border-radius:12px;padding:1.2rem 1rem;cursor:pointer;text-align:center;transition:border-color .15s,background .15s;}
+.arte-card:hover{background:#f1efe8;}
+.arte-card.selected{border:2px solid #534ab7;background:#eeedfe;}
+.arte-card i{font-size:26px;color:#888780;display:block;margin-bottom:.6rem;}
+.arte-card.selected i{color:#534ab7;}
+.arte-card .ac-title{font-size:14px;font-weight:500;color:#2c2c2a;}
+.arte-card .ac-sub{font-size:12px;color:#5f5e5a;margin-top:3px;}
+.electivo-block{background:#f1efe8;border:0.5px solid #d3d1c7;border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1.1rem;}
+.eb-title{font-size:13px;font-weight:500;color:#2c2c2a;margin-bottom:.75rem;display:flex;align-items:center;gap:7px;}
+.eb-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#534ab7;color:#fff;font-size:11px;font-weight:500;flex-shrink:0;}
+.electivo-opts{display:flex;flex-direction:column;gap:8px;}
+.e-opt{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border:0.5px solid #d3d1c7;border-radius:8px;cursor:pointer;transition:background .12s,border-color .12s;background:#fff;}
+.e-opt:hover{background:#f1efe8;}
+.e-opt.selected{border-color:#534ab7;background:#eeedfe;}
+.e-opt input[type=radio]{accent-color:#534ab7;width:15px;height:15px;margin-top:2px;cursor:pointer;flex-shrink:0;}
+.eo-label{font-size:13px;color:#2c2c2a;line-height:1.4;}
+.e-opt.selected .eo-label{color:#3c3489;}
+.e-badge{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.05em;padding:2px 7px;border-radius:20px;margin-right:5px;vertical-align:middle;}
+.badge-a{background:#c0dd97;color:#27500a;}
+.badge-b{background:#b5d4f4;color:#0c447c;}
+.badge-c{background:#f4c0d1;color:#72243e;}
+.alert-block{border-radius:8px;padding:11px 13px;font-size:13px;line-height:1.5;display:none;margin-bottom:1rem;}
+.alert-block.show{display:flex;align-items:flex-start;gap:9px;}
+.alert-warn{background:#faeeda;color:#633806;border:0.5px solid #fac775;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border:0.5px solid #d3d1c7;border-radius:8px;cursor:pointer;margin-bottom:1.35rem;transition:background .12s;}
+.toggle-row:hover{background:#f1efe8;}
+.tl-text{font-size:14px;color:#2c2c2a;}
+.tl-sub{font-size:12px;color:#5f5e5a;margin-top:2px;}
+.switch{position:relative;width:40px;height:22px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;}
+.slider{position:absolute;inset:0;background:#d3d1c7;border-radius:22px;transition:.2s;}
+.slider:before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;}
+.switch input:checked+.slider{background:#534ab7;}
+.switch input:checked+.slider:before{transform:translateX(18px);}
+.success-wrap{text-align:center;padding:1.5rem .5rem;}
+.success-circle{width:60px;height:60px;border-radius:50%;background:#eaf3de;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:26px;color:#3b6d11;}
+.success-title{font-family:Georgia,serif;font-size:22px;font-weight:500;color:#2c2c2a;margin-bottom:.5rem;}
+.success-sub{font-size:14px;color:#5f5e5a;line-height:1.6;margin-bottom:1.5rem;}
+.resumen-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:20px;background:#f1efe8;border:0.5px solid #d3d1c7;color:#5f5e5a;margin:3px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===== PASO 1: IDENTIFICACIÓN ===== -->
+<div id="sec-id">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Identificación del estudiante</h1>
+  <p class="subtitle">Complete los datos personales para iniciar el proceso de matrícula.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:9%"></div></div>
+    <div class="step-label"><span>Paso 1 — Identificación</span><span>1 de 11</span></div>
+    <div class="field">
+      <label class="label" for="nombre">Nombre completo</label>
+      <div class="input-wrap"><i class="ti ti-user pfx" aria-hidden="true"></i><input type="text" id="nombre" placeholder="Ej: María González López" /></div>
+      <span class="error-msg" id="err-nombre">Ingrese el nombre completo.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="rut">RUT</label>
+      <div class="input-wrap"><i class="ti ti-id-badge pfx" aria-hidden="true"></i><input type="text" id="rut" placeholder="12.345.678-9" maxlength="12" oninput="fmtRut(this)" /></div>
+      <span class="error-msg" id="err-rut">Ingrese un RUT válido.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="email">Correo electrónico</label>
+      <div class="input-wrap"><i class="ti ti-mail pfx" aria-hidden="true"></i><input type="email" id="email" placeholder="ejemplo@correo.com" /></div>
+      <p class="hint">Se enviará una confirmación a este correo.</p>
+      <span class="error-msg" id="err-email">Ingrese un correo electrónico válido.</span>
+    </div>
+    <hr class="div" />
+    <button class="btn btn-primary" onclick="continId()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 2: TIPO ===== -->
+<div id="sec-tipo" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Tipo de estudiante</h1>
+  <p class="subtitle">Indique si el estudiante es nuevo en el establecimiento o ya ha estado matriculado anteriormente.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:18%"></div></div>
+    <div class="step-label"><span>Paso 2 — Tipo de matrícula</span><span>2 de 11</span></div>
+    <div class="type-grid">
+      <div class="type-card" id="card-nuevo" onclick="setTipo('nuevo')"><i class="ti ti-user-plus" aria-hidden="true"></i><div class="tc-title">Alumno nuevo</div><div class="tc-sub">Primera vez en el establecimiento</div></div>
+      <div class="type-card" id="card-antiguo" onclick="setTipo('antiguo')"><i class="ti ti-users" aria-hidden="true"></i><div class="tc-title">Alumno antiguo</div><div class="tc-sub">Ya ha estado matriculado antes</div></div>
+    </div>
+    <span class="error-msg" id="err-tipo" style="display:none;margin-bottom:.75rem;">Seleccione una opción.</span>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-tipo','sec-id')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continTipo()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 3: DATOS DEL ESTUDIANTE ===== -->
+<div id="sec-datos" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Datos del estudiante</h1>
+  <p class="subtitle">Complete la información personal del estudiante.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:27%"></div></div>
+    <div class="step-label"><span>Paso 3 — Información personal</span><span>3 de 11</span></div>
+    <p class="sec-head">Datos personales</p>
+    <div class="field">
+      <label class="label" for="fnac">Fecha de nacimiento</label>
+      <div class="input-wrap"><i class="ti ti-calendar pfx" aria-hidden="true"></i><input type="date" id="fnac" style="padding-left:36px;" /></div>
+      <span class="error-msg" id="err-fnac">Ingrese la fecha de nacimiento.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="nac">Nacionalidad</label>
+      <div class="input-wrap"><i class="ti ti-world pfx" aria-hidden="true"></i>
+        <select id="nac" style="padding-left:36px;" onchange="checkNac()">
+          <option value="">Seleccione nacionalidad…</option>
+          <option>Chile</option>
+          <optgroup label="Latinoamérica">
+            <option>Argentina</option><option>Bolivia</option><option>Brasil</option><option>Colombia</option><option>Cuba</option><option>Ecuador</option><option>El Salvador</option><option>Guatemala</option><option>Haití</option><option>Honduras</option><option>México</option><option>Nicaragua</option><option>Panamá</option><option>Paraguay</option><option>Perú</option><option>República Dominicana</option><option>Uruguay</option><option>Venezuela</option>
+          </optgroup>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+      <span class="error-msg" id="err-nac">Seleccione la nacionalidad.</span>
+    </div>
+    <div class="field hidden" id="field-nac-otro">
+      <label class="label" for="nac-otro">Especifique el país</label>
+      <div class="input-wrap"><i class="ti ti-world pfx" aria-hidden="true"></i><input type="text" id="nac-otro" placeholder="Ej: Francia" /></div>
+      <span class="error-msg" id="err-nac-otro">Indique el país.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="hermanos">Número de hermanos</label>
+      <div class="input-wrap"><i class="ti ti-users pfx" aria-hidden="true"></i><input type="number" id="hermanos" min="0" max="20" placeholder="0" style="padding-left:36px;" oninput="this.value=this.value.replace(/[^0-9]/g,'')" /></div>
+      <span class="error-msg" id="err-hermanos">Ingrese un número válido.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="convive">¿Con quién vive el estudiante?</label>
+      <div class="input-wrap"><i class="ti ti-home pfx" aria-hidden="true"></i>
+        <select id="convive" style="padding-left:36px;" onchange="checkConvive()">
+          <option value="">Seleccione…</option>
+          <option>Ambos padres</option><option>Solo madre</option><option>Solo padre</option><option>Abuelos paternos</option><option>Abuelos maternos</option><option>Residencia</option><option value="otro">Otro</option>
+        </select>
+      </div>
+      <span class="error-msg" id="err-convive">Seleccione una opción.</span>
+    </div>
+    <div class="field hidden" id="field-convive-otro">
+      <label class="label" for="convive-otro">Especifique con quién vive</label>
+      <div class="input-wrap"><i class="ti ti-home pfx" aria-hidden="true"></i><input type="text" id="convive-otro" placeholder="Ej: tíos, tutores legales…" /></div>
+      <span class="error-msg" id="err-convive-otro">Indique con quién vive.</span>
+    </div>
+    <hr class="div" />
+    <p class="sec-head">Dirección</p>
+    <div class="grid3" style="margin-bottom:1.35rem;">
+      <div><label class="label" for="calle">Calle</label><input type="text" id="calle" class="no-icon" placeholder="Ej: Los Aromos" /><span class="error-msg" id="err-calle">Requerido.</span></div>
+      <div><label class="label" for="nro">Número</label><input type="text" id="nro" class="no-icon" placeholder="1234" /><span class="error-msg" id="err-nro">Requerido.</span></div>
+      <div><label class="label" for="depto">Depto/Casa</label><input type="text" id="depto" class="no-icon" placeholder="Opcional" /></div>
+    </div>
+    <div class="grid2" style="margin-bottom:1.35rem;">
+      <div><label class="label" for="sector">Sector / Villa</label><input type="text" id="sector" class="no-icon" placeholder="Ej: Villa Las Rosas" /></div>
+      <div><label class="label" for="ciudad">Ciudad</label><input type="text" id="ciudad" class="no-icon" placeholder="Ej: Temuco" /><span class="error-msg" id="err-ciudad">Requerido.</span></div>
+    </div>
+    <div class="field"><label class="label" for="comuna">Comuna</label><input type="text" id="comuna" class="no-icon" placeholder="Ej: Temuco" /><span class="error-msg" id="err-comuna">Requerido.</span></div>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-datos','sec-tipo')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continDatos()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 4: PUEBLOS ORIGINARIOS ===== -->
+<div id="sec-pueblos" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Pueblos originarios</h1>
+  <p class="subtitle">Indique si el estudiante pertenece o tiene descendencia de algún pueblo originario.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:36%"></div></div>
+    <div class="step-label"><span>Paso 4 — Pueblos originarios</span><span>4 de 11</span></div>
+    <div class="field">
+      <label class="label">¿El estudiante pertenece a un pueblo originario?</label>
+      <div class="radio-group">
+        <label class="radio-opt" id="opt-pno" onclick="setPueblo('no')"><input type="radio" name="pueblo" /><div><div class="ro-label">No pertenece a ningún pueblo originario</div></div></label>
+        <label class="radio-opt" id="opt-psi" onclick="setPueblo('si')"><input type="radio" name="pueblo" /><div><div class="ro-label">Sí pertenece o tiene descendencia</div></div></label>
+      </div>
+      <span class="error-msg" id="err-pueblo">Seleccione una opción.</span>
+    </div>
+    <div id="bloque-pueblo" class="hidden">
+      <div class="field">
+        <label class="label" for="cual-pueblo">Pueblo originario</label>
+        <div class="input-wrap"><i class="ti ti-map-pin pfx" aria-hidden="true"></i>
+          <select id="cual-pueblo" style="padding-left:36px;">
+            <option value="">Seleccione…</option>
+            <option>Mapuche</option><option>Aymara</option><option>Rapa Nui</option><option>Lickanantay (Atacameño)</option><option>Quechua</option><option>Colla</option><option>Diaguita</option><option>Kawésqar</option><option>Yagán</option><option>Chango</option>
+          </select>
+        </div>
+        <span class="error-msg" id="err-cual-pueblo">Seleccione el pueblo originario.</span>
+      </div>
+      <div class="field">
+        <label class="label">Descendencia por parte de</label>
+        <div class="radio-group">
+          <label class="radio-opt" id="opt-dpadre" onclick="setDesc('padre')"><input type="radio" name="desc" /><div><div class="ro-label">Padre</div></div></label>
+          <label class="radio-opt" id="opt-dmadre" onclick="setDesc('madre')"><input type="radio" name="desc" /><div><div class="ro-label">Madre</div></div></label>
+          <label class="radio-opt" id="opt-dambos" onclick="setDesc('ambos')"><input type="radio" name="desc" /><div><div class="ro-label">Ambos</div></div></label>
+        </div>
+        <span class="error-msg" id="err-desc">Seleccione la descendencia.</span>
+      </div>
+      <div class="field" style="margin-bottom:.5rem;">
+        <label class="label">¿El estudiante tiene beca indígena?</label>
+        <label class="toggle-row" for="beca-toggle">
+          <div><div class="tl-text">Beca indígena</div><div class="tl-sub">Otorgada por JUNAEB u otro organismo</div></div>
+          <label class="switch"><input type="checkbox" id="beca-toggle" /><span class="slider"></span></label>
+        </label>
+      </div>
+    </div>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-pueblos','sec-datos')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continPueblos()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 5: COLEGIO DE PROCEDENCIA ===== -->
+<div id="sec-colegio" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Colegio de procedencia</h1>
+  <p class="subtitle">Ingrese los datos del establecimiento de origen y el curso en que se matriculará.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+    <div class="step-label"><span>Paso 5 — Procedencia académica</span><span>5 de 11</span></div>
+    <p class="sec-head">Establecimiento anterior</p>
+    <div class="field">
+      <label class="label" for="col-nombre">Nombre del colegio de procedencia</label>
+      <div class="input-wrap"><i class="ti ti-building pfx" aria-hidden="true"></i><input type="text" id="col-nombre" placeholder="Ej: Colegio San Agustín de Temuco" /></div>
+      <span class="error-msg" id="err-col-nombre">Ingrese el nombre del colegio.</span>
+    </div>
+    <div class="field">
+      <label class="label" for="curso-proc">Curso de procedencia</label>
+      <div class="input-wrap"><i class="ti ti-list-numbers pfx" aria-hidden="true"></i>
+        <select id="curso-proc" style="padding-left:36px;">
+          <option value="">Seleccione…</option>
+          <optgroup label="Enseñanza Básica"><option value="7b">7° Básico</option><option value="8b">8° Básico</option></optgroup>
+          <optgroup label="Enseñanza Media"><option value="1m">1° Medio</option><option value="2m">2° Medio</option><option value="3m">3° Medio</option><option value="4m">4° Medio</option></optgroup>
+        </select>
+      </div>
+      <span class="error-msg" id="err-curso-proc">Seleccione el curso de procedencia.</span>
+    </div>
+    <hr class="div" />
+    <p class="sec-head">Matrícula nueva</p>
+    <div class="field">
+      <label class="label" for="curso-mat">Curso en que se matricula</label>
+      <div class="input-wrap"><i class="ti ti-school pfx" aria-hidden="true"></i>
+        <select id="curso-mat" style="padding-left:36px;" onchange="cursoMatVal=this.value">
+          <option value="">Seleccione…</option>
+          <optgroup label="Enseñanza Básica"><option value="8b">8° Básico</option></optgroup>
+          <optgroup label="Enseñanza Media"><option value="1m">1° Medio</option><option value="2m">2° Medio</option><option value="3m">3° Medio</option><option value="4m">4° Medio</option></optgroup>
+        </select>
+      </div>
+      <span class="error-msg" id="err-curso-mat">Seleccione el curso.</span>
+    </div>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-colegio','sec-pueblos')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continColegio()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 6a: ARTES ===== -->
+<div id="sec-artes" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Asignatura de artes</h1>
+  <p class="subtitle">Seleccione la modalidad de artes que cursará el estudiante.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:54%"></div></div>
+    <div class="step-label"><span>Paso 6 — Electivos</span><span>6 de 11</span></div>
+    <div class="artes-grid">
+      <div class="arte-card" id="ac-visual" onclick="setArte('visual')"><i class="ti ti-palette" aria-hidden="true"></i><div class="ac-title">Artes Visuales</div><div class="ac-sub">Expresión plástica y visual</div></div>
+      <div class="arte-card" id="ac-musical" onclick="setArte('musical')"><i class="ti ti-music" aria-hidden="true"></i><div class="ac-title">Artes Musicales</div><div class="ac-sub">Teoría y práctica musical</div></div>
+    </div>
+    <span class="error-msg" id="err-arte">Seleccione una asignatura.</span>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-artes','sec-colegio')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continArtes()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 6b: ELECTIVOS ===== -->
+<div id="sec-electivos" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Selección de electivos</h1>
+  <p class="subtitle">Elija un electivo por sección. No puede seleccionar tres asignaturas de la misma categoría (A, B o C).</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:54%"></div></div>
+    <div class="step-label"><span>Paso 6 — Electivos</span><span>6 de 11</span></div>
+    <div class="electivo-block"><div class="eb-title"><span class="eb-num">1</span>Sección 1</div><div class="electivo-opts" id="opts-s1"></div><span class="error-msg" id="err-s1">Seleccione un electivo.</span></div>
+    <div class="electivo-block"><div class="eb-title"><span class="eb-num">2</span>Sección 2</div><div class="electivo-opts" id="opts-s2"></div><span class="error-msg" id="err-s2">Seleccione un electivo.</span></div>
+    <div class="electivo-block"><div class="eb-title"><span class="eb-num">3</span>Sección 3</div><div class="electivo-opts" id="opts-s3"></div><span class="error-msg" id="err-s3">Seleccione un electivo.</span></div>
+    <div class="alert-block alert-warn" id="alert-comb"><i class="ti ti-alert-triangle" aria-hidden="true"></i><span>No es posible seleccionar tres electivos de la misma categoría (A, B o C). Cambie al menos una opción.</span></div>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-electivos','sec-colegio')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continElectivos()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 7: SALUD ===== -->
+<div id="sec-salud" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Antecedentes de salud</h1>
+  <p class="subtitle">Indique si el estudiante presenta alguna enfermedad o condición de salud que el establecimiento deba conocer.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:63%"></div></div>
+    <div class="step-label"><span>Paso 7 — Salud</span><span>7 de 11</span></div>
+    <div class="field">
+      <label class="label">¿El estudiante sufre alguna enfermedad o condición de salud?</label>
+      <div class="radio-group">
+        <label class="radio-opt" id="opt-eno" onclick="setEnf('no')"><input type="radio" name="enf" /><div><div class="ro-label">No presenta enfermedades</div></div></label>
+        <label class="radio-opt" id="opt-esi" onclick="setEnf('si')"><input type="radio" name="enf" /><div><div class="ro-label">Sí presenta una enfermedad o condición</div></div></label>
+      </div>
+      <span class="error-msg" id="err-enf">Seleccione una opción.</span>
+    </div>
+    <div id="bloque-enf" class="hidden">
+      <div class="field">
+        <label class="label" for="cual-enf">¿Cuál es la enfermedad o condición?</label>
+        <div class="input-wrap"><i class="ti ti-stethoscope pfx" aria-hidden="true"></i><input type="text" id="cual-enf" placeholder="Ej: Diabetes tipo 1, epilepsia, asma…" /></div>
+        <span class="error-msg" id="err-cual-enf">Indique la enfermedad.</span>
+      </div>
+      <div class="field">
+        <label class="label">¿El estudiante recibe medicamento?</label>
+        <div class="radio-group">
+          <label class="radio-opt" id="opt-mno" onclick="setMed('no')"><input type="radio" name="med" /><div><div class="ro-label">No recibe medicamento</div></div></label>
+          <label class="radio-opt" id="opt-msi" onclick="setMed('si')"><input type="radio" name="med" /><div><div class="ro-label">Sí recibe medicamento</div></div></label>
+        </div>
+        <span class="error-msg" id="err-med">Seleccione una opción.</span>
+      </div>
+      <div id="bloque-med" class="hidden">
+        <div class="field" style="margin-bottom:0">
+          <label class="label" for="cual-med">¿Cuál medicamento recibe?</label>
+          <div class="input-wrap"><i class="ti ti-pill pfx" aria-hidden="true"></i><input type="text" id="cual-med" placeholder="Ej: Ritalin, insulina, salbutamol…" /></div>
+          <span class="error-msg" id="err-cual-med">Indique el medicamento.</span>
+        </div>
+      </div>
+    </div>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="volverDesdeEnf()"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continEnf()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 8: PIE ===== -->
+<div id="sec-pie" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Programa de Integración Escolar</h1>
+  <p class="subtitle">El PIE es un programa de apoyo para estudiantes con necesidades educativas especiales.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+    <div class="step-label"><span>Paso 8 — PIE</span><span>8 de 11</span></div>
+    <div class="field">
+      <label class="label">¿El estudiante perteneció al Programa de Integración Escolar (PIE) durante el año 2026?</label>
+      <div class="radio-group">
+        <label class="radio-opt" id="opt-pieno" onclick="setPIE('no')"><input type="radio" name="pie" /><div><div class="ro-label">No perteneció al PIE</div></div></label>
+        <label class="radio-opt" id="opt-piesi" onclick="setPIE('si')"><input type="radio" name="pie" /><div><div class="ro-label">Sí perteneció al PIE</div></div></label>
+      </div>
+      <span class="error-msg" id="err-pie">Seleccione una opción.</span>
+    </div>
+    <div id="bloque-pie" class="hidden">
+      <div class="field" style="margin-bottom:0">
+        <label class="label">¿El estudiante porta la documentación para el ingreso al programa PIE?</label>
+        <div class="radio-group">
+          <label class="radio-opt" id="opt-docsi" onclick="setDocPIE('si')"><input type="radio" name="docpie" /><div><div class="ro-label">Sí</div><div class="ro-sub">Cuenta con la documentación requerida.</div></div></label>
+          <label class="radio-opt" id="opt-docno" onclick="setDocPIE('no')"><input type="radio" name="docpie" /><div><div class="ro-label">No, me comprometo a conseguir la documentación para marzo</div><div class="ro-sub">La documentación será entregada al establecimiento antes de marzo 2027.</div></div></label>
+        </div>
+        <span class="error-msg" id="err-docpie">Seleccione una opción.</span>
+      </div>
+    </div>
+    <hr class="div" />
+    <button class="btn btn-back btn" onclick="show2('sec-pie','sec-salud')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" onclick="continPIE()">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== PASO 9: PROGRAMAS SOCIALES ===== -->
+<div id="sec-social" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <h1 class="title">Programas sociales</h1>
+  <p class="subtitle">Complete la información sobre programas sociales y situación socioeconómica del estudiante.</p>
+  <div class="card">
+    <div class="progress-bar"><div class="progress-fill" style="width:81%"></div></div>
+    <div class="step-label"><span>Paso 9 — Programas sociales</span><span>9 de 11</span></div>
+
+    <p class="sec-head">Programa social</p>
+    <div class="field">
+      <label class="label" for="prog-social">¿El estudiante pertenece a algún programa social?</label>
+      <div class="input-wrap"><i class="ti ti-building-community pfx" aria-hidden="true"></i>
+        <select id="prog-social" style="padding-left:36px;" onchange="checkProgSocial()">
+          <option value="">Seleccione una opción…</option>
+          <option value="ninguno">No pertenece a ningún programa</option>
+          <optgroup label="Programas sociales">
+            <option>Chile Solidario</option>
+            <option>Puente</option>
+            <option>Chile Seguridades y Oportunidades</option>
+            <option>Ingreso Ético Familiar</option>
+            <option>Subsistema Seguridades y Oportunidades</option>
+            <option>Chile Crece Contigo</option>
+            <option>Beca de Apoyo a la Retención Escolar (BARE)</option>
+            <option>Programa Vínculos</option>
+            <option>Camino a Casa</option>
+            <option value="otro-social">Otro</option>
+          </optgroup>
+        </select>
+      </div>
+      <span class="error-msg" id="err-prog-social">Seleccione una opción.</span>
+    </div>
+    <div class="field hidden" id="field-social-otro">
+      <label class="label" for="social-otro">Especifique el programa</label>
+      <div class="input-wrap"><i class="ti ti-building-community pfx" aria-hidden="true"></i><input type="text" id="social-otro" placeholder="Nombre del programa social…" /></div>
+      <span class="error-msg" id="err-social-otro">Indique el nombre del programa.</span>
+    </div>
+
+    <hr class="div" />
+    <p class="sec-head">Registro Social de Hogares</p>
+    <div class="field">
+      <label class="label" for="rsh">Porcentaje del Registro Social de Hogares (RSH)</label>
+      <div class="input-wrap"><i class="ti ti-percentage pfx" aria-hidden="true"></i>
+        <input type="number" id="rsh" min="0" max="100" placeholder="Ej: 40" style="padding-left:36px;" oninput="this.value=this.value.replace(/[^0-9]/g,'');if(parseInt(this.value)>100)this.value='100';" />
+      </div>
+      <p class="hint">Ingrese un valor entre 0 y 100. Si no cuenta con esta información, puede dejarlo en blanco.</p>
+      <span class="error-msg" id="err-rsh">Ingrese un valor entre 0 y 100.</span>
+    </div>
+
+    <hr class="div" />
+    <p class="sec-head">Programa derivado por tribunales</p>
+    <div class="field">
+      <label class="label">¿El estudiante pertenece a un programa derivado por Tribunales de Familia o por otra institución?</label>
+      <div class="radio-group">
+        <label class="radio-opt" id="opt-tribno" onclick="setTrib('no')"><input type="radio" name="trib" /><div><div class="ro-label">No</div></div></label>
+        <label class="radio-opt" id="opt-tribsi" onclick="setTrib('si')"><input type="radio" name="trib" /><div><div class="ro-label">Sí</div></div></label>
+      </div>
+      <span class="error-msg" id="err-trib">Seleccione una opción.</span>
+    </div>
+    <div id="bloque-trib" class="hidden">
+      <div class="field">
+        <label class="label" for="cual-trib">Nombre del programa</label>
+        <div class="input-wrap"><i class="ti ti-gavel pfx" aria-hidden="true"></i><input type="text" id="cual-trib" placeholder="Ej: Programa de Libertad Asistida…" /></div>
+        <span class="error-msg" id="err-cual-trib">Indique el nombre del programa.</span>
+      </div>
+    </div>
+
+    <hr class="div" />
+    <p class="sec-head">Orden de alejamiento</p>
+    <div class="field">
+      <label class="label">¿El estudiante es afecto a una orden de alejamiento?</label>
+      <div class="radio-group">
+        <label class="radio-opt" id="opt-oano" onclick="setOA('no')"><input type="radio" name="oa" /><div><div class="ro-label">No</div></div></label>
+        <label class="radio-opt" id="opt-oasi" onclick="setOA('si')"><input type="radio" name="oa" /><div><div class="ro-label">Sí</div></div></label>
+      </div>
+      <span class="error-msg" id="err-oa">Seleccione una opción.</span>
+    </div>
+    <div id="bloque-oa" class="hidden">
+      <div class="field">
+        <label class="label" for="persona-oa">Nombre de la persona con orden de alejamiento</label>
+        <div class="input-wrap"><i class="ti ti-user-x pfx" aria-hidden="true"></i><input type="text" id="persona-oa" placeholder="Nombre completo de la persona…" /></div>
+        <span class="error-msg" id="err-persona-oa">Ingrese el nombre de la persona.</span>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label class="label">¿El estudiante porta documentación de la orden de alejamiento?</label>
+        <div class="radio-group">
+          <label class="radio-opt" id="opt-oadsi" onclick="setOADoc('si')"><input type="radio" name="oadoc" /><div><div class="ro-label">Sí</div><div class="ro-sub">Cuenta con la documentación.</div></div></label>
+          <label class="radio-opt" id="opt-oadni" onclick="setOADoc('no')"><input type="radio" name="oadoc" /><div><div class="ro-label">No</div><div class="ro-sub">No porta la documentación en este momento.</div></div></label>
+        </div>
+        <span class="error-msg" id="err-oadoc">Seleccione una opción.</span>
+      </div>
+    </div>
+
+    <hr class="div" />
+    <div id="err-envio" style="display:none;align-items:flex-start;gap:9px;background:#fcebeb;border:0.5px solid #f7c1c1;border-radius:8px;padding:11px 13px;font-size:13px;color:#791f1f;margin-bottom:1rem;">
+      <i class="ti ti-alert-circle" style="font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+      <span>Hubo un error al enviar el formulario. Verifique su conexión e intente nuevamente. Si el problema persiste, contacte al establecimiento.</span>
+    </div>
+    <button class="btn btn-back btn" onclick="show2('sec-social','sec-pie')"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver</button>
+    <button class="btn btn-primary" id="btn-enviar" onclick="continSocial()">Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!-- ===== ÉXITO ===== -->
+<div id="sec-exito" class="hidden">
+  <div class="badge"><i class="ti ti-school" aria-hidden="true" style="font-size:12px"></i>matrícula 2027</div>
+  <div class="card">
+    <div class="success-wrap">
+      <div class="success-circle"><i class="ti ti-check" aria-hidden="true"></i></div>
+      <p class="success-title">¡Matrícula enviada!</p>
+      <p class="success-sub">
+        Hola, <strong id="exito-nombre"></strong>. Los datos han sido registrados correctamente en el sistema del Liceo Manuel Montt.<br><br>
+        Se enviará una confirmación a <strong id="exito-email"></strong>.<br>
+        Curso de matrícula: <strong id="exito-curso"></strong>.
+      </p>
+      <div style="background:#f1efe8;border-radius:8px;padding:14px 16px;text-align:left;margin-bottom:1.5rem;">
+        <p style="font-size:12px;font-weight:500;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">Próximos pasos</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;">
+            <i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+            El establecimiento revisará la información enviada.
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;">
+            <i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+            Se le contactará para confirmar fecha de firma de matrícula.
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#2c2c2a;">
+            <i class="ti ti-circle-check" style="color:#3b6d11;font-size:17px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+            Recuerde traer los documentos requeridos el día de la matrícula.
+          </div>
+        </div>
+      </div>
+      <button class="btn" onclick="show2('sec-exito','sec-social')">
+        <i class="ti ti-edit" aria-hidden="true"></i> Corregir información
+      </button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+let tipoVal=null,puebloVal=null,descVal=null,cursoMatVal='';
+let arteVal=null,electivos={s1:null,s2:null,s3:null};
+let enfVal=null,medVal=null,pieVal=null,docPieVal=null;
+let tribVal=null,oaVal=null,oaDocVal=null;
+
+const S1=[{val:'A-Eco',label:'Economía y Sociedad',cat:'A'},{val:'B-Comp',label:'Pensamiento Computacional y Programación',cat:'B'},{val:'B-Quim',label:'Química',cat:'B'},{val:'B-Prob',label:'Probabilidades y Estadística Descriptiva Inferencial',cat:'B'},{val:'C-Mus',label:'Interpretación Musical',cat:'C'}];
+const S2=[{val:'A-Geo',label:'Geografía, Territorio y Desafíos Socioambientales',cat:'A'},{val:'A-Lec',label:'Lectura y Escritura Especializada',cat:'A'},{val:'B-Bio',label:'Biología Celular y Molecular',cat:'B'},{val:'B-Mat',label:'Límites, Derivadas e Integrales',cat:'B'},{val:'C-Dis',label:'Diseño y Arquitectura',cat:'C'}];
+const S3_3M=[{val:'A-Fil',label:'Filosofía Política',cat:'A'},{val:'B-Sal',label:'Ciencias de la Salud',cat:'B'},{val:'B-Fis',label:'Física',cat:'B'},{val:'C-Art',label:'Artes Visuales, Audiovisuales y Multivisuales',cat:'C'}];
+const S3_4M=[{val:'A-Arg',label:'Argumentación',cat:'A'},{val:'B-Sal',label:'Ciencias de la Salud',cat:'B'},{val:'B-Fis',label:'Física',cat:'B'},{val:'C-Art',label:'Artes Visuales, Audiovisuales y Multivisuales',cat:'C'}];
+
+function show2(de,a){document.getElementById(de).classList.add('hidden');document.getElementById(a).classList.remove('hidden');}
+function showEl(id,v){document.getElementById(id).classList.toggle('hidden',!v);}
+function setErr(id,s){document.getElementById(id).classList.toggle('show',s);}
+function setInv(id,s){const e=document.getElementById(id);if(e)e.classList.toggle('invalid',s);}
+function reqTxt(id,eid){const v=document.getElementById(id).value.trim();const ok=v.length>0;setErr(eid,!ok);setInv(id,!ok);return ok;}
+function reqSel(id,eid){const v=document.getElementById(id).value;const ok=!!v;setErr(eid,!ok);setInv(id,!ok);return ok;}
+
+function fmtRut(el){let v=el.value.replace(/[^0-9kK]/g,'');if(v.length>9)v=v.slice(0,9);let f='';if(v.length>1){const b=v.slice(0,-1),d=v.slice(-1).toUpperCase();if(b.length>6)f=b.slice(0,-6)+'.'+b.slice(-6,-3)+'.'+b.slice(-3)+'-'+d;else if(b.length>3)f=b.slice(0,-3)+'.'+b.slice(-3)+'-'+d;else f=b+'-'+d;}else f=v;el.value=f;}
+function valRut(r){r=r.replace(/\./g,'').replace(/-/g,'');if(r.length<2)return false;const b=r.slice(0,-1),d=r.slice(-1).toUpperCase();if(!/^\d+$/.test(b))return false;let s=0,m=2;for(let i=b.length-1;i>=0;i--){s+=parseInt(b[i])*m;m=m===7?2:m+1;}const c=11-(s%11);return d===(c===11?'0':c===10?'K':String(c));}
+function valEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());}
+
+function sel2(ids,active){ids.forEach(id=>{const el=document.getElementById(id);el.classList.toggle('selected',id===active);el.querySelector('input').checked=id===active;});}
+
+function continId(){
+  let ok=true;
+  const n=document.getElementById('nombre').value.trim();if(n.length<3){setErr('err-nombre',true);setInv('nombre',true);ok=false;}else{setErr('err-nombre',false);setInv('nombre',false);}
+  const r=document.getElementById('rut').value;if(!valRut(r)){setErr('err-rut',true);setInv('rut',true);ok=false;}else{setErr('err-rut',false);setInv('rut',false);}
+  const e=document.getElementById('email').value;if(!valEmail(e)){setErr('err-email',true);setInv('email',true);ok=false;}else{setErr('err-email',false);setInv('email',false);}
+  if(ok)show2('sec-id','sec-tipo');
+}
+
+function setTipo(v){tipoVal=v;sel2(['card-nuevo','card-antiguo'],'card-'+v);}
+function continTipo(){if(!tipoVal){setErr('err-tipo',true);return;}if(tipoVal==='antiguo'){alert('Flujo alumno antiguo: integración con Lirmi pendiente.');return;}show2('sec-tipo','sec-datos');}
+
+function checkNac(){showEl('field-nac-otro',document.getElementById('nac').value==='otro');}
+function checkConvive(){showEl('field-convive-otro',document.getElementById('convive').value==='otro');}
+function continDatos(){
+  let ok=true;
+  if(!document.getElementById('fnac').value){setErr('err-fnac',true);setInv('fnac',true);ok=false;}else{setErr('err-fnac',false);setInv('fnac',false);}
+  if(!reqSel('nac','err-nac'))ok=false;
+  if(document.getElementById('nac').value==='otro'&&!reqTxt('nac-otro','err-nac-otro'))ok=false;
+  const h=document.getElementById('hermanos').value;if(h===''||parseInt(h)<0){setErr('err-hermanos',true);setInv('hermanos',true);ok=false;}else{setErr('err-hermanos',false);setInv('hermanos',false);}
+  if(!reqSel('convive','err-convive'))ok=false;
+  if(document.getElementById('convive').value==='otro'&&!reqTxt('convive-otro','err-convive-otro'))ok=false;
+  if(!reqTxt('calle','err-calle'))ok=false;
+  if(!reqTxt('nro','err-nro'))ok=false;
+  if(!reqTxt('ciudad','err-ciudad'))ok=false;
+  if(!reqTxt('comuna','err-comuna'))ok=false;
+  if(ok)show2('sec-datos','sec-pueblos');
+}
+
+function setPueblo(v){puebloVal=v;sel2(['opt-pno','opt-psi'],'opt-p'+v.slice(0,1)+'o'.repeat(v==='no'?1:0)+(v==='si'?'si':''));document.getElementById('opt-p'+v).classList.add('selected');document.getElementById('opt-p'+(v==='no'?'si':'no')).classList.remove('selected');document.getElementById('opt-p'+v).querySelector('input').checked=true;document.getElementById('opt-p'+(v==='no'?'si':'no')).querySelector('input').checked=false;showEl('bloque-pueblo',v==='si');setErr('err-pueblo',false);}
+function setDesc(v){descVal=v;['padre','madre','ambos'].forEach(o=>{const el=document.getElementById('opt-d'+o);el.classList.toggle('selected',o===v);el.querySelector('input').checked=o===v;});setErr('err-desc',false);}
+function continPueblos(){
+  let ok=true;
+  if(!puebloVal){setErr('err-pueblo',true);ok=false;}
+  if(puebloVal==='si'){if(!reqSel('cual-pueblo','err-cual-pueblo'))ok=false;if(!descVal){setErr('err-desc',true);ok=false;}}
+  if(ok)show2('sec-pueblos','sec-colegio');
+}
+
+function continColegio(){
+  let ok=true;
+  if(!reqTxt('col-nombre','err-col-nombre'))ok=false;
+  if(!reqSel('curso-proc','err-curso-proc'))ok=false;
+  if(!reqSel('curso-mat','err-curso-mat'))ok=false;
+  if(!ok)return;
+  cursoMatVal=document.getElementById('curso-mat').value;
+  if(['8b','1m','2m'].includes(cursoMatVal)){show2('sec-colegio','sec-artes');}
+  else{const s3=cursoMatVal==='4m'?S3_4M:S3_3M;renderOpts('opts-s1',S1,'s1');renderOpts('opts-s2',S2,'s2');renderOpts('opts-s3',s3,'s3');electivos={s1:null,s2:null,s3:null};show2('sec-colegio','sec-electivos');}
+}
+
+function setArte(v){arteVal=v;document.getElementById('ac-visual').classList.toggle('selected',v==='visual');document.getElementById('ac-musical').classList.toggle('selected',v==='musical');setErr('err-arte',false);}
+function continArtes(){if(!arteVal){setErr('err-arte',true);return;}show2('sec-artes','sec-salud');}
+
+function catBadge(c){return`<span class="e-badge badge-${c.toLowerCase()}">${c}</span>`;}
+function renderOpts(cid,opts,sec){const el=document.getElementById(cid);el.innerHTML='';opts.forEach(o=>{const d=document.createElement('label');d.className='e-opt';d.id='eopt-'+sec+'-'+o.val;d.innerHTML=`<input type="radio" name="elec-${sec}" onchange="onElec('${sec}','${o.val}','${o.cat}')"><span class="eo-label">${catBadge(o.cat)}${o.label}</span>`;el.appendChild(d);});}
+function onElec(sec,val,cat){electivos[sec]={val,cat};document.querySelectorAll(`[id^="eopt-${sec}-"]`).forEach(el=>el.classList.remove('selected'));document.getElementById('eopt-'+sec+'-'+val).classList.add('selected');setErr('err-'+sec,false);validComb(false);}
+function validComb(show){const cats=[electivos.s1?.cat,electivos.s2?.cat,electivos.s3?.cat].filter(Boolean);if(cats.length<3){document.getElementById('alert-comb').classList.remove('show');return true;}const inv=['A','B','C'].some(c=>cats.filter(x=>x===c).length===3);document.getElementById('alert-comb').classList.toggle('show',inv&&show);return!inv;}
+function continElectivos(){let ok=true;['s1','s2','s3'].forEach(s=>{if(!electivos[s]){setErr('err-'+s,true);ok=false;}});if(!ok)return;if(!validComb(true))return;show2('sec-electivos','sec-salud');}
+
+function setEnf(v){enfVal=v;document.getElementById('opt-eno').classList.toggle('selected',v==='no');document.getElementById('opt-esi').classList.toggle('selected',v==='si');document.getElementById('opt-eno').querySelector('input').checked=v==='no';document.getElementById('opt-esi').querySelector('input').checked=v==='si';showEl('bloque-enf',v==='si');setErr('err-enf',false);}
+function setMed(v){medVal=v;document.getElementById('opt-mno').classList.toggle('selected',v==='no');document.getElementById('opt-msi').classList.toggle('selected',v==='si');document.getElementById('opt-mno').querySelector('input').checked=v==='no';document.getElementById('opt-msi').querySelector('input').checked=v==='si';showEl('bloque-med',v==='si');setErr('err-med',false);}
+function volverDesdeEnf(){show2('sec-salud',['8b','1m','2m'].includes(cursoMatVal)?'sec-artes':'sec-electivos');}
+function continEnf(){
+  let ok=true;
+  if(!enfVal){setErr('err-enf',true);ok=false;}
+  if(enfVal==='si'){if(!reqTxt('cual-enf','err-cual-enf'))ok=false;if(!medVal){setErr('err-med',true);ok=false;}if(medVal==='si'&&!reqTxt('cual-med','err-cual-med'))ok=false;}
+  if(ok)show2('sec-salud','sec-pie');
+}
+
+function setPIE(v){pieVal=v;document.getElementById('opt-pieno').classList.toggle('selected',v==='no');document.getElementById('opt-piesi').classList.toggle('selected',v==='si');document.getElementById('opt-pieno').querySelector('input').checked=v==='no';document.getElementById('opt-piesi').querySelector('input').checked=v==='si';showEl('bloque-pie',v==='si');setErr('err-pie',false);}
+function setDocPIE(v){docPieVal=v;document.getElementById('opt-docsi').classList.toggle('selected',v==='si');document.getElementById('opt-docno').classList.toggle('selected',v==='no');document.getElementById('opt-docsi').querySelector('input').checked=v==='si';document.getElementById('opt-docno').querySelector('input').checked=v==='no';setErr('err-docpie',false);}
+function continPIE(){let ok=true;if(!pieVal){setErr('err-pie',true);ok=false;}if(pieVal==='si'&&!docPieVal){setErr('err-docpie',true);ok=false;}if(ok)show2('sec-pie','sec-social');}
+
+function checkProgSocial(){showEl('field-social-otro',document.getElementById('prog-social').value==='otro-social');setErr('err-prog-social',false);}
+function setTrib(v){tribVal=v;document.getElementById('opt-tribno').classList.toggle('selected',v==='no');document.getElementById('opt-tribsi').classList.toggle('selected',v==='si');document.getElementById('opt-tribno').querySelector('input').checked=v==='no';document.getElementById('opt-tribsi').querySelector('input').checked=v==='si';showEl('bloque-trib',v==='si');setErr('err-trib',false);}
+function setOA(v){oaVal=v;document.getElementById('opt-oano').classList.toggle('selected',v==='no');document.getElementById('opt-oasi').classList.toggle('selected',v==='si');document.getElementById('opt-oano').querySelector('input').checked=v==='no';document.getElementById('opt-oasi').querySelector('input').checked=v==='si';showEl('bloque-oa',v==='si');setErr('err-oa',false);}
+function setOADoc(v){oaDocVal=v;document.getElementById('opt-oadsi').classList.toggle('selected',v==='si');document.getElementById('opt-oadni').classList.toggle('selected',v==='no');document.getElementById('opt-oadsi').querySelector('input').checked=v==='si';document.getElementById('opt-oadni').querySelector('input').checked=v==='no';setErr('err-oadoc',false);}
+function continSocial(){
+  let ok=true;
+  if(!reqSel('prog-social','err-prog-social'))ok=false;
+  if(document.getElementById('prog-social').value==='otro-social'&&!reqTxt('social-otro','err-social-otro'))ok=false;
+  const rshV=document.getElementById('rsh').value;
+  if(rshV!==''&&(isNaN(rshV)||parseInt(rshV)<0||parseInt(rshV)>100)){setErr('err-rsh',true);ok=false;}else setErr('err-rsh',false);
+  if(!tribVal){setErr('err-trib',true);ok=false;}
+  if(tribVal==='si'&&!reqTxt('cual-trib','err-cual-trib'))ok=false;
+  if(!oaVal){setErr('err-oa',true);ok=false;}
+  if(oaVal==='si'){if(!reqTxt('persona-oa','err-persona-oa'))ok=false;if(!oaDocVal){setErr('err-oadoc',true);ok=false;}}
+  if(ok)enviarFormulario();
+}
+
+function recopilarDatos(){
+  const v=id=>document.getElementById(id).value;
+  const conviveVal=v('convive')==='otro'?v('convive-otro'):v('convive');
+  const nacVal=v('nac')==='otro'?v('nac-otro'):v('nac');
+  const progSocialVal=v('prog-social')==='otro-social'?v('social-otro'):v('prog-social');
+
+  let electivosStr='';
+  if(['8b','1m','2m'].includes(cursoMatVal)){
+    electivosStr=arteVal==='visual'?'Artes Visuales':'Artes Musicales';
+  } else {
+    const nombres={
+      's1':[...S1].find(x=>x.val===electivos.s1?.val)?.label||'',
+      's2':[...S2].find(x=>x.val===electivos.s2?.val)?.label||'',
+      's3':[...S3_3M,...S3_4M].find(x=>x.val===electivos.s3?.val)?.label||''
+    };
+    electivosStr=`${nombres.s1} | ${nombres.s2} | ${nombres.s3}`;
+  }
+
+  const cursoLabels={'8b':'8° Básico','1m':'1° Medio','2m':'2° Medio','3m':'3° Medio','4m':'4° Medio'};
+
+  return {
+    nombre: v('nombre'),
+    rut: v('rut'),
+    email: v('email'),
+    tipoAlumno: tipoVal==='nuevo'?'Alumno nuevo':'Alumno antiguo',
+    fechaNacimiento: v('fnac'),
+    nacionalidad: nacVal,
+    hermanos: v('hermanos'),
+    convive: conviveVal,
+    calle: v('calle'),
+    numero: v('nro'),
+    deptoCasa: v('depto'),
+    sector: v('sector'),
+    ciudad: v('ciudad'),
+    comuna: v('comuna'),
+    puebloOriginario: puebloVal==='si'?(v('cual-pueblo')||''):'No',
+    descendencia: puebloVal==='si'?(descVal||''):'',
+    becaIndigena: puebloVal==='si'?(document.getElementById('beca-toggle').checked?'Sí':'No'):'',
+    colegioProcedencia: v('col-nombre'),
+    cursoProcedencia: v('curso-proc'),
+    cursoMatricula: cursoLabels[cursoMatVal]||cursoMatVal,
+    electivos: electivosStr,
+    enfermedad: enfVal==='si'?v('cual-enf'):'No',
+    medicamento: enfVal==='si'?(medVal==='si'?v('cual-med'):'No'):'',
+    pie: pieVal==='si'?'Sí':'No',
+    docPie: pieVal==='si'?(docPieVal==='si'?'Sí, porta documentación':'No, se compromete a marzo'):'',
+    programaSocial: progSocialVal,
+    rsh: v('rsh')||'No informado',
+    tribunales: tribVal==='si'?v('cual-trib'):'No',
+    ordenAlejamiento: oaVal==='si'?'Sí':'No',
+    personaOA: oaVal==='si'?v('persona-oa'):'',
+    docOA: oaVal==='si'?(oaDocVal==='si'?'Sí porta documentación':'No porta documentación'):''
+  };
+}
+
+async function enviarFormulario(){
+  const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbycNoCBQZHmacdyp8MPDX_G6xMB99BFGNwsoAF7M9RxQKnE1uGUiaX48937baLjEOo9Yg/exec';
+
+  const btnEnviar=document.getElementById('btn-enviar');
+  const errEnvio=document.getElementById('err-envio');
+  errEnvio.style.display='none';
+  btnEnviar.disabled=true;
+  btnEnviar.innerHTML='<i class="ti ti-loader" style="animation:spin 1s linear infinite" aria-hidden="true"></i> Enviando…';
+
+  const datos=recopilarDatos();
+
+  try {
+    await fetch(APPS_SCRIPT_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(datos)
+    });
+    document.getElementById('exito-nombre').textContent=datos.nombre.split(' ')[0];
+    document.getElementById('exito-email').textContent=datos.email;
+    document.getElementById('exito-curso').textContent=datos.cursoMatricula;
+    show2('sec-social','sec-exito');
+  } catch(err){
+    btnEnviar.disabled=false;
+    btnEnviar.innerHTML='Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i>';
+    errEnvio.style.display='flex';
+  }
+}
+</script>
+<style>
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+</style>
+</body>
+</html>
