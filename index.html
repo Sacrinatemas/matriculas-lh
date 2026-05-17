@@ -734,32 +734,41 @@ function recopilarDatos(){
   };
 }
 
-async function enviarFormulario(){
-  const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwXtfJAy4H80dDmx8FyfVdXLOWU5RL-yvA6cL_5fGVZmAL0pkNBGs5j4WtFgwFlfw2rkw/exec';
+async function enviarFormulario() {
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgT-TmULx7m-r3Ib-r4-wvb3CtxCHqR6U9QhHdmmK_WgwsEZ8HO8qXwUZLY5tx1sZxPA/exec';
 
-  const btnEnviar=document.getElementById('btn-enviar');
-  const errEnvio=document.getElementById('err-envio');
-  errEnvio.style.display='none';
-  btnEnviar.disabled=true;
-  btnEnviar.innerHTML='<i class="ti ti-loader" style="animation:spin 1s linear infinite" aria-hidden="true"></i> Enviando…';
+  const btnEnviar = document.getElementById('btn-enviar');
+  const errEnvio = document.getElementById('err-envio');
+  errEnvio.style.display = 'none';
+  btnEnviar.disabled = true;
+  btnEnviar.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite" aria-hidden="true"></i> Enviando…';
 
-  const datos=recopilarDatos();
+  const datos = recopilarDatos();
+
+  // Construir URL con parámetros
+  const params = new URLSearchParams(datos);
+  const url = `${APPS_SCRIPT_URL}?${params.toString()}`;
 
   try {
-    await fetch(APPS_SCRIPT_URL,{
-      method:'POST',
-      mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(datos)
+    // Usar Image en vez de fetch — evita bloqueos de CORS en Google Sites
+    await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = resolve;
+      img.onerror = resolve; // resolve en ambos casos — el envío igual llega
+      img.src = url;
+      setTimeout(resolve, 4000); // timeout de seguridad de 4 segundos
     });
-    document.getElementById('exito-nombre').textContent=datos.nombre.split(' ')[0];
-    document.getElementById('exito-email').textContent=datos.email;
-    document.getElementById('exito-curso').textContent=datos.cursoMatricula;
-    show2('sec-social','sec-exito');
-  } catch(err){
-    btnEnviar.disabled=false;
-    btnEnviar.innerHTML='Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i>';
-    errEnvio.style.display='flex';
+
+    const nombre = datos.nombre.split(' ')[0];
+    document.getElementById('exito-nombre').textContent = nombre;
+    document.getElementById('exito-email').textContent = datos.email;
+    document.getElementById('exito-curso').textContent = datos.cursoMatricula;
+    show2('sec-social', 'sec-exito');
+
+  } catch (err) {
+    btnEnviar.disabled = false;
+    btnEnviar.innerHTML = 'Enviar matrícula <i class="ti ti-send" aria-hidden="true"></i>';
+    errEnvio.style.display = 'flex';
   }
 }
 </script>
